@@ -14,17 +14,20 @@ export default function Dashboard() {
     return (
         <form>
             <Container maxWidth="xl">
-                <Box sx={{ pb: 5 }}>
-                    <Typography variant="h3" align="center">Resume Parser</Typography>
+                <Typography variant="h3" align="center">Resume Parser</Typography>
+                <br></br>
+                <Box sx={{ pb: 3 }}>
                     <Button 
-                        style={{ marginLeft: 580 }}
+                        style={{ marginLeft: 660 }}
                         component="span"
                         variant="contained"
                     >
                     Upload Resume
                     </Button>
+                </Box>
+                <Box sx={{ pb: 3 }}>
                     <Button 
-                        style={{ marginLeft: 20 }}
+                        style={{ marginLeft: 665 }}
                         component="span"
                         variant="contained"
                     >
