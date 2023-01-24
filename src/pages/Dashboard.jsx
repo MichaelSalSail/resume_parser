@@ -1,3 +1,4 @@
+import {useState} from "react";
 import {
     Box,
     Container,
@@ -6,11 +7,17 @@ import {
 } from "@mui/material";
 
 export default function Dashboard() {
-    let file_name="Michael Salamon Resume"
-    let pages=1
-    let sections=5
-    let bullet_pts=12
-    let word_count=500
+    // Track whether the user uploaded a resume or not
+    const [resume, setResume] = useState(false);
+    // Simple function called upon file upload
+    const onFileChange = () => {
+        if(resume===false)
+            setResume(true)
+    }
+    // Update text block w/ apporpriate values
+    const default_values={"file_name": "NULL", "pages": 0, "sections": 0, "bullet_pts": 0, "word_count": 0}
+    const example_values={"file_name": "Michael Salamon Resume", "pages": 1, "sections": 5, "bullet_pts": 12, "word_count": 500}
+
     return (
         <form>
             <Container maxWidth="xl">
@@ -19,10 +26,12 @@ export default function Dashboard() {
                 <Box sx={{ pb: 3 }}>
                     <Button 
                         style={{ marginLeft: 660 }}
-                        component="span"
+                        component="label"
                         variant="contained"
+                        onChange={onFileChange}
                     >
                     Upload Resume
+                    <input hidden accept=".txt" type="file" />
                     </Button>
                 </Box>
                 <Box sx={{ pb: 3 }}>
@@ -44,17 +53,21 @@ export default function Dashboard() {
                     }}
                 >
                     <br></br>
-                    <Typography color="white" align="center">File Name: {file_name}</Typography>
+                    <Typography color="white" align="center">File Name: {resume ? (example_values["file_name"]):(default_values["file_name"])}</Typography>
                     <br></br>
-                    <Typography color="white" align="center"># of Pgs: {pages}</Typography>
+                    <Typography color="white" align="center"># of Pages: {resume ? (example_values["pages"]):(default_values["pages"])}</Typography>
                     <br></br>
-                    <Typography color="white" align="center"># of Sec: {sections}</Typography>
+                    <Typography color="white" align="center"># of Sections: {resume ? (example_values["sections"]):(default_values["sections"])}</Typography>
                     <br></br>
-                    <Typography color="white" align="center">Bullet pts: {bullet_pts}</Typography>
+                    <Typography color="white" align="center">Bullet Points: {resume ? (example_values["bullet_pts"]):(default_values["bullet_pts"])}</Typography>
                     <br></br>
-                    <Typography color="white" align="center">Ttl Words: {word_count}</Typography>
+                    <Typography color="white" align="center">Total Words: {resume ? (example_values["word_count"]):(default_values["word_count"])}</Typography>
                 </Box>
             </Container>
         </form>
     );
 }
+// resume ? (example_values["pages"]):(default_values["pages"])
+// resume ? (example_values["sections"]):(default_values["sections"])
+// resume ? (example_values["bullet_pts"]):(default_values["bullet_pts"])
+// resume ? (example_values["word_count"]):(default_values["word_count"])
