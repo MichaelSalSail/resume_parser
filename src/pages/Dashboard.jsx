@@ -14,6 +14,8 @@ export default function Dashboard() {
         if(resume===false)
             setResume(true)
     }
+    // Parse the resume upon button click
+    const [parse, setParse] = useState(false);
     // Update text block w/ apporpriate values
     const default_values={"file_name": "NULL", "pages": 0, "sections": 0, "bullet_pts": 0, "word_count": 0}
     const example_values={"file_name": "Michael Salamon Resume", "pages": 1, "sections": 5, "bullet_pts": 12, "word_count": 500}
@@ -39,6 +41,11 @@ export default function Dashboard() {
                         style={{ marginLeft: 665 }}
                         component="span"
                         variant="contained"
+                        disabled={!resume}
+                        onClick={() => {
+                            if(resume===true & parse===false)
+                                setParse(true)
+                        }}
                     >
                     Parse Resume
                     </Button>
@@ -53,21 +60,17 @@ export default function Dashboard() {
                     }}
                 >
                     <br></br>
-                    <Typography color="white" align="center">File Name: {resume ? (example_values["file_name"]):(default_values["file_name"])}</Typography>
+                    <Typography color="white" align="center">File Name: {parse ? (example_values["file_name"]):(default_values["file_name"])}</Typography>
                     <br></br>
-                    <Typography color="white" align="center"># of Pages: {resume ? (example_values["pages"]):(default_values["pages"])}</Typography>
+                    <Typography color="white" align="center"># of Pages: {parse ? (example_values["pages"]):(default_values["pages"])}</Typography>
                     <br></br>
-                    <Typography color="white" align="center"># of Sections: {resume ? (example_values["sections"]):(default_values["sections"])}</Typography>
+                    <Typography color="white" align="center"># of Sections: {parse ? (example_values["sections"]):(default_values["sections"])}</Typography>
                     <br></br>
-                    <Typography color="white" align="center">Bullet Points: {resume ? (example_values["bullet_pts"]):(default_values["bullet_pts"])}</Typography>
+                    <Typography color="white" align="center">Bullet Points: {parse ? (example_values["bullet_pts"]):(default_values["bullet_pts"])}</Typography>
                     <br></br>
-                    <Typography color="white" align="center">Total Words: {resume ? (example_values["word_count"]):(default_values["word_count"])}</Typography>
+                    <Typography color="white" align="center">Total Words: {parse ? (example_values["word_count"]):(default_values["word_count"])}</Typography>
                 </Box>
             </Container>
         </form>
     );
 }
-// resume ? (example_values["pages"]):(default_values["pages"])
-// resume ? (example_values["sections"]):(default_values["sections"])
-// resume ? (example_values["bullet_pts"]):(default_values["bullet_pts"])
-// resume ? (example_values["word_count"]):(default_values["word_count"])
