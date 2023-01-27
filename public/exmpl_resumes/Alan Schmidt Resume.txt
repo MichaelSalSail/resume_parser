@@ -1,0 +1,35 @@
+Name: Alan Schmidt
+Contact Information: Email: alanschmidt@email.com | Phone: 555-555-5555 | Address: 1234 Main St, Anytown USA 12345
+
+Education:
+- Bachelor of Science in Computer Science, XYZ University, Graduated May 2020
+-- Relevant coursework: Data Structures and Algorithms, Computer Systems and Architecture, Database Systems, Software Engineering
+
+Skills:
+- Programming languages: Java, Python, C++, JavaScript
+- Web development: HTML, CSS, JavaScript, React
+- Database management: MySQL, MongoDB
+- Cloud computing: AWS, Azure
+- Version control: Git
+
+Experience:
+- Software Engineer Intern, ABC Company, June 2019 - August 2019
+-- Developed and maintained web applications using React and Node.js
+-- Implemented features and fixed bugs on a regular basis
+-- Worked with a team of developers to meet project deadlines
+- Research Assistant, XYZ University, January 2018 - May 2020
+-- Worked on a project to develop a database management system
+-- Collaborated with a team of researchers to publish a paper on the subject
+-- Presented the project at various conferences and workshops
+
+Projects:
+- Personal Finance Tracker - A web application that allows users to track their expenses and income. Implemented using React and Firebase.
+- Online Marketplace - A web application that allows users to buy and sell items. Implemented using Node.js, Express, and MongoDB.
+
+Extracurriculars:
+- Member, XYZ University Programming Club, 2018-2020
+-- Participated in various programming competitions and hackathons
+- Volunteer, XYZ City CoderDojo, 2017-2020
+-- Taught coding and computer science to children in the community
+- Volunteer, XYZ City Library, 2016-2018
+-- Assisted patrons with computer-related issues and taught basic computer skills
