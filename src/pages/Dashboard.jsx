@@ -5,9 +5,9 @@ import {
     Typography,
     Button
 } from "@mui/material";
+// All file names located in public/exmpl_resumes dir
+import stored_rsmes from "./file_names.json";
 import "./Dashboard.css";
-//import listReactFiles from 'list-react-files';
-//listReactFiles(__dirname).then(files => console.log(files));
 
 export default function Dashboard() {
 
@@ -24,8 +24,6 @@ export default function Dashboard() {
     // Update text block w/ appropriate values
     const default_values={"file_name": "NULL", "pages": 0, "sections": 0, "bullet_pts": 0, "word_count": 0};
     const all_sections=["Education:","Skills:","Experience:","Projects:","Extracurriculars:","Certifications:","Awards:"];
-    // All file names located in public/exmpl_resumes dir
-    const [stored_rsmes,setRsmes]=useState(["abc","qrs","xyz"]);
     // Keep track of search term(s) for Database Search
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -141,7 +139,7 @@ export default function Dashboard() {
                         onChange={(event) => {
                             setSearchTerm(event.target.value);
                         }}/>
-                    {stored_rsmes.filter((val) => {
+                    {stored_rsmes.rsmes_names.filter((val) => {
                         if(searchTerm==="")
                             return val;
                         else if(val.toLowerCase().includes(searchTerm.toLowerCase()))
