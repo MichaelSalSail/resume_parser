@@ -142,7 +142,8 @@ export default function Dashboard() {
                     {stored_rsmes.rsmes_names.filter((val) => {
                         if(searchTerm==="")
                             return val;
-                        else if(val.toLowerCase().includes(searchTerm.toLowerCase()))
+                        // check that the searchTerm exists in the .txt file contents
+                        else if(stored_rsmes.rsmes_cntnt[stored_rsmes.rsmes_names.findIndex(elmnt => elmnt===val)].toLowerCase().includes(searchTerm.toLowerCase()))
                             return val;
                     }).map((val,key)=> {
                         return (
