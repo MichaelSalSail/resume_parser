@@ -5,6 +5,9 @@ import {
     Typography,
     Button
 } from "@mui/material";
+import "./Dashboard.css";
+//import listReactFiles from 'list-react-files';
+//listReactFiles(__dirname).then(files => console.log(files));
 
 export default function Dashboard() {
 
@@ -20,8 +23,11 @@ export default function Dashboard() {
     const [parse, setParse] = useState(false);
     // Update text block w/ appropriate values
     const default_values={"file_name": "NULL", "pages": 0, "sections": 0, "bullet_pts": 0, "word_count": 0};
-    const example_values={"file_name": "Michael Salamon Resume", "pages": 1, "sections": 4, "bullet_pts": 12, "word_count": 500};
     const all_sections=["Education:","Skills:","Experience:","Projects:","Extracurriculars:","Certifications:","Awards:"];
+    // All file names located in public/exmpl_resumes dir
+    const [stored_rsmes,setRsmes]=useState(["abc","qrs","xyz"]);
+    // Keep track of search term(s) for Database Search
+    const [searchTerm, setSearchTerm] = useState('');
 
     // Retrieve resume metadata
     const parseNow = (resume_str) => {
@@ -70,7 +76,11 @@ export default function Dashboard() {
             setResume(true)
         // Reset parse if file uploaded before
         setParse(false);
-    }
+    };
+    // retrieve list of file names in public/exmpl_resumes
+    //const retrieveNames = () => {
+
+    //};
 
     return (
         <form>
@@ -122,6 +132,28 @@ export default function Dashboard() {
                     <br></br>
                     <Typography color="white" align="center">Total Words: {parse ? (wordcount):(default_values["word_count"])}</Typography>
                 </Box>
+                <br></br>
+                <Typography variant="h4" align="center" sx={{ pb: 1 }}>Database Search</Typography>
+                <div className="App">
+                    <input 
+                        type="text" 
+                        placeholder="Search..." 
+                        onChange={(event) => {
+                            setSearchTerm(event.target.value);
+                        }}/>
+                    {stored_rsmes.filter((val) => {
+                        if(searchTerm==="")
+                            return val;
+                        else if(val.toLowerCase().includes(searchTerm.toLowerCase()))
+                            return val;
+                    }).map((val,key)=> {
+                        return (
+                            <div key={key}>
+                                <p>{val}</p>
+                            </div>
+                        );
+                    })}
+                </div>
             </Container>
         </form>
     );

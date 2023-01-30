@@ -1,0 +1,18 @@
+.App {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.App input {
+    width: 200px;
+    height: 25px;
+    font-size: 15px;
+}
+
+p {
+    margin: 7px;
+    font-size: 18px;
+}
