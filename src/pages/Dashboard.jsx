@@ -2,7 +2,7 @@ import {useState} from "react";
 import {
     Box,
     Container,
-    Typography,
+    Typography, 
     Button
 } from "@mui/material";
 // All file names located in public/exmpl_resumes dir
