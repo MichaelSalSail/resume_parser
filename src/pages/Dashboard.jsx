@@ -61,10 +61,11 @@ export default function Dashboard() {
         setPages(pgs);
     };
     // function called upon file upload
-    const onFileChange = (data) => {
+    const onFileChange = async (data) => {
         let reader = new FileReader();
         try
         {
+            setParse(false);
             console.log("File Name:",data.target.files[0]['name']);
             setFileName(data.target.files[0]['name']);
             reader.readAsText(data.target.files[0]);
@@ -72,7 +73,7 @@ export default function Dashboard() {
                 console.log(reader.result);
                 parseNow(reader.result);
             };
-            submitForm(session_id, data.target.files[0], data.target.files[0]['name'])
+            await submitForm(session_id, data.target.files[0], data.target.files[0]['name']);
             setResume(true);
         }
         catch(error)
@@ -158,6 +159,7 @@ export default function Dashboard() {
                         // check that the searchTerm exists in the .txt file contents
                         else if(stored_rsmes.rsmes_cntnt[stored_rsmes.rsmes_names.findIndex(elmnt => elmnt===val)].toLowerCase().includes(searchTerm.toLowerCase()))
                             return val;
+                        return null;
                     }).map((val,key)=> {
                         return (
                             <div key={key}>
