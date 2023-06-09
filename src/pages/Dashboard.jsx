@@ -8,9 +8,15 @@ import {
 // All file names located in public/exmpl_resumes dir
 import stored_rsmes from "./file_names.json";
 import "./Dashboard.css";
+// Cloud database for uploaded resumes
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { storage } from '../lib/firebase'
+
+async function submitForm(id, resume_file, file_name) {
+    await uploadBytes(ref(storage, `sessions/${id}/${file_name}`), resume_file)
+  }
 
 export default function Dashboard() {
-
     // Track whether the user uploaded a resume or not
     const [resume, setResume] = useState(false);
     // Store resume metadata
@@ -26,6 +32,8 @@ export default function Dashboard() {
     const all_sections=["Education:","Skills:","Experience:","Projects:","Extracurriculars:","Certifications:","Awards:"];
     // Keep track of search term(s) for Database Search
     const [searchTerm, setSearchTerm] = useState('');
+    // unique id
+    const session_id = stored_rsmes["session_id"];
 
     // Retrieve resume metadata
     const parseNow = (resume_str) => {
@@ -64,16 +72,21 @@ export default function Dashboard() {
                 console.log(reader.result);
                 parseNow(reader.result);
             };
+            submitForm(session_id, data.target.files[0], data.target.files[0]['name'])
+            setResume(true);
         }
         catch(error)
         {
             console.log("Failed to select file!")
+            setParse(false);
         }
+        /*
         // We now have a resume!
         if(resume===false)
             setResume(true)
         // Reset parse if file uploaded before
         setParse(false);
+        */
     };
     // retrieve list of file names in public/exmpl_resumes
     //const retrieveNames = () => {

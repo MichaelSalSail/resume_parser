@@ -35,6 +35,10 @@ let all_cntnt = [];
 for(let i in all_names)
   all_cntnt[i]=extract_text(all_names[i]);
 
+// timestamp this file run as identifier for next web app session run
+const currentDate = new Date();
+const session_id = currentDate.toISOString().replace(/[:-]/g, '');
+
 // put everything in 1 json
-let result={"rsmes_names":all_names,"rsmes_cntnt":all_cntnt};
+let result={"session_id":session_id,"rsmes_names":all_names,"rsmes_cntnt":all_cntnt};
 fs.writeFileSync("src/pages/file_names.json", JSON.stringify(result));
