@@ -3,7 +3,14 @@ import {
     Box,
     Container,
     Typography, 
-    Button
+    Button,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Paper
 } from "@mui/material";
 // All file names located in public/exmpl_resumes dir
 import stored_rsmes from "./file_names.json";
@@ -12,8 +19,16 @@ import "./Dashboard.css";
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { storage } from '../lib/firebase'
 
+// Keep track of uploaded files in session
+function createData(name, URL) {
+    return { name, URL };
+}
+const filenames = [];
+
 async function submitForm(id, resume_file, file_name) {
     await uploadBytes(ref(storage, `sessions/${id}/${file_name}`), resume_file)
+    const fileURL = await getDownloadURL(ref(storage, `sessions/${id}/${file_name}`))
+    filenames.push(createData(file_name, fileURL));
   }
 
 export default function Dashboard() {
@@ -145,6 +160,38 @@ export default function Dashboard() {
                     <Typography color="white" align="center">Total Words: {parse ? (wordcount):(default_values["word_count"])}</Typography>
                 </Box>
                 <br></br>
+                <Box
+                    align="center"
+                    style={{ marginLeft: 595 }}
+                    sx={{
+                        width: 300,
+                        height: 275
+                    }}
+                >
+                    <TableContainer component={Paper}>
+                        <Table aria-label="simple table">
+                            <TableHead>
+                            <TableRow>
+                                <TableCell><b>Filenames</b></TableCell>
+                                <TableCell><b>FileURLs</b></TableCell>
+                            </TableRow>
+                            </TableHead>
+                            <TableBody>
+                            {filenames.map((row) => (
+                                <TableRow
+                                key={row.name}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                >
+                                <TableCell component="th" scope="row">
+                                    {row.name}
+                                </TableCell>
+                                <TableCell align="right">{row.URL}</TableCell>
+                                </TableRow>
+                            ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Box>
                 <Typography variant="h4" align="center" sx={{ pb: 1 }}>Database Search</Typography>
                 <div className="App">
                     <input 
