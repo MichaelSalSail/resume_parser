@@ -96,18 +96,12 @@ export default function Dashboard() {
             console.log("Failed to select file!")
             setParse(false);
         }
-        /*
         // We now have a resume!
         if(resume===false)
             setResume(true)
         // Reset parse if file uploaded before
         setParse(false);
-        */
     };
-    // retrieve list of file names in public/exmpl_resumes
-    //const retrieveNames = () => {
-
-    //};
 
     return (
         <form>
@@ -185,7 +179,7 @@ export default function Dashboard() {
                                 <TableCell component="th" scope="row">
                                     {row.name}
                                 </TableCell>
-                                <TableCell align="right">{row.URL}</TableCell>
+                                <TableCell align="right">{<a href={row.URL} rel="noreferrer">Download</a>}</TableCell>
                                 </TableRow>
                             ))}
                             </TableBody>
